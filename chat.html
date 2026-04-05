@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Chat Zg - Conversa</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="chat-container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Chat Zg</h2>
+        <div id="friendList">
+            <!-- Amigos aparecem aqui -->
+        </div>
+        <hr style="border-color:#7289da;">
+        <div id="serverList">
+            <!-- Servidores aparecem aqui -->
+        </div>
+        <hr style="border-color:#7289da;">
+        <div>
+            <button onclick="abrirPopup('Comandos: /limpar /bot /status /admin')">Comandos</button>
+        </div>
+    </div>
+
+    <!-- Chat principal -->
+    <div class="main-chat">
+        <div id="chatHeader">Bem-vindo!</div>
+        <div id="chatWindow">
+            <!-- Mensagens aparecem aqui -->
+        </div>
+
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" placeholder="Digite sua mensagem...">
+            <div class="chat-buttons">
+                <button onclick="enviarMensagem()">Enviar</button>
+                <button class="upload-btn" onclick="abrirUpload()">📤 Upload</button>
+                <button class="emoji-btn" onclick="abrirEmoji()">😊 Emoji</button>
+            </div>
+        </div>
+
+        <div id="statusContainer" class="status-box">
+            Status ativo aparecerá aqui
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Popup -->
+<div id="popup">
+    <div id="popupContent">
+        <p>Mensagem</p>
+        <button onclick="fecharPopup()">Fechar</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
