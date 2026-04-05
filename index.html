@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Chat Zg - Login/Cadastro</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="login-container">
+
+    <h1>⚡ Chat Zg ⚡</h1>
+
+    <!-- Cadastro -->
+    <div class="cadastro-box">
+        <h2>CADASTRE-SE</h2>
+        <input type="text" id="nomeExibido" placeholder="Nome exibido">
+        <input type="text" id="username" placeholder="@usuario">
+        <input type="password" id="senha" placeholder="Senha">
+        <button onclick="cadastrar()">Cadastrar</button>
+    </div>
+
+    <!-- Login -->
+    <div class="login-box">
+        <h2>ENTRAR</h2>
+        <input type="text" id="loginUser" placeholder="@usuario">
+        <input type="password" id="loginSenha" placeholder="Senha">
+        <button onclick="entrar()">Entrar</button>
+    </div>
+
+</div>
+
+<script>
+// ===== Usuários globais =====
+let usuarios = []; // Array para armazenar usuários temporariamente
+let currentUser = null;
+
+// ===== Função de cadastro =====
+function cadastrar() {
+    const nomeExibido = document.getElementById("nomeExibido").value.trim();
+    const username = document.getElementById("username").value.trim();
+    const senha = document.getElementById("senha").value.trim();
+
+    if (!nomeExibido || !username || !senha) {
+        alert("Preencha todos os campos!");
+        return;
+    }
+
+    if (!username.startsWith("@") || username.includes(" ") || usernameExists(username)) {
+        alert("Nome de usuário inválido ou já existente!");
+        return;
+    }
+
+    const novoUsuario = {
+        nomeExibido: nomeExibido,
+        username: username,
+        senha: senha,
+        isAdmin: username === "@migkoreal",
+        amigos: [],
+        bloqueados: []
+    };
+
+    usuarios.push(novoUsuario);
+    alert(`Usuário ${nomeExibido} cadastrado com sucesso!`);
+
+    // Limpa campos
+    document.getElementById("nomeExibido").value = "";
+    document.getElementById("username").value = "";
+    document.getElementById("senha").value = "";
+}
+
+function usernameExists(username) {
+    return usuarios.some(u => u.username === username);
+}
+
+// ===== Função de login =====
+function entrar() {
+    const username = document.getElementById("loginUser").value.trim();
+    const senha = document.getElementById("loginSenha").value.trim();
+
+    const user = usuarios.find(u => u.username === username && u.senha === senha);
+
+    if (!user) {
+        alert("Usuário ou senha incorretos!");
+        return;
+    }
+
+    currentUser = user;
+    alert(`Bem-vindo, ${currentUser.nomeExibido}!`);
+    window.location.href = "chat.html"; // Redireciona para o chat
+}
+</script>
+
+</body>
+  </html>
